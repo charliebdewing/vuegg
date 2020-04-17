@@ -326,6 +326,16 @@ export default {
   outline: none;
 }
 
+@media screen and (max-width: 1280px) {
+  .mr-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+  }
+}
+
 .selection-area {
   position: absolute;
   border: 1px solid #03a9f4;

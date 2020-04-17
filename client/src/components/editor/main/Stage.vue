@@ -21,8 +21,9 @@
   >
 
     <stage-el
-      v-for="element in page.children"
+      v-for="(element, i) in sortedChildren"
       :key="element.id"
+      :class="{'has-children': element.children.length}"
       :elem="element">
     </stage-el>
 
@@ -76,7 +77,11 @@ export default {
     ...mapState({
       selectedElements: state => state.app.selectedElements || [],
       projectComponents: state => state.project.components
-    })
+    }),
+
+    sortedChildren () {
+      return cloneDeep(this.page.children).sort((a, b) => a.top - b.top || a.left - b.left)
+    }
   },
   methods: {
     clearSelectionHandler () {

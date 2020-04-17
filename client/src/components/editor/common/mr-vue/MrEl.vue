@@ -133,6 +133,19 @@ export default {
 .mr-el:hover {
   cursor: move;
 }
+
+
+/*
+At smaller sizes width could be based off percentage of parent
+
+*/
+@media screen and (max-width: 1280px) {
+  .mr-el {
+    inset: auto !important;
+    position: relative;
+  }
+}
+
 .mr-el > * {
   margin: 0;
   width: 100%;
