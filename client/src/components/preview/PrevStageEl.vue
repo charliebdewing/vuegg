@@ -4,14 +4,14 @@ import PrevStageEl from './PrevStageEl'
 
 export default {
   name: 'prev-stage-el',
-  props: ['elem'],
+  props: ['elem', 'breakpoint'],
   render: function (createElement) {
     let elementO = (this.elem.global) ? {...this.elem, ...this.componentRef, id: this.elem.id} : this.elem
 
     let styles = elementO.styles
     if (elementO.egglement) {
       styles = {
-        ...elementO.styles,
+        ...styles,
         position: 'absolute',
         zIndex: elementO.zIndex,
         minWidth: elementO.minWidth,
@@ -22,6 +22,11 @@ export default {
         right: (typeof elementO.right === 'number') ? (elementO.right + 'px') : elementO.right,
         width: (typeof elementO.width === 'number') ? (elementO.width + 'px') : elementO.width,
         height: (typeof elementO.height === 'number') ? (elementO.height + 'px') : elementO.height
+      }
+
+      styles = {
+        ...styles,
+        ...this.elementStyle
       }
     }
 
@@ -98,7 +103,21 @@ export default {
 
     ...mapState({
       projectComponents: state => state.project.components
-    })
+    }),
+
+    elementStyle () {
+      let styles = { ...(this.breakpoint === 'sm' || this.breakpoint === 'md')
+        ? {position: 'relative', inset: 'auto !important', maxWidth: '100%', margin: '8px 16px'}
+        : {}
+      }
+
+      // styles = {
+      //   ...styles,
+      //   ...(this.breakpoint === 'sm') ? {width: '100%'} : {}
+      // }
+
+      return styles
+    }
   }
 }
 </script>

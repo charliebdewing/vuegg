@@ -1,7 +1,7 @@
 <template>
   <div class="preview__wrapper" :style="previewStyle">
     <div class="preview">
-      <prev-stage v-if="selectedPage" :page="selectedPage"></prev-stage>
+      <prev-stage :breakpoint="breakpoint" v-if="selectedPage" :page="selectedPage"></prev-stage>
     </div>
 
     <div class="action-bar__wrapper">
